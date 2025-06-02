@@ -1,0 +1,86 @@
+JAM,Renca,2
+JAM,Maipú,6
+JAM,Ñuñoa,197
+JAM,La Reina,18
+JAM,Lo Prado,8
+JAM,Recoleta,45
+JAM,Santiago,240
+JAM,Las Condes,38
+JAM,San Miguel,4
+JAM,Cerro Navia,6
+JAM,Peñalolén,5
+JAM,Providencia,305
+JAM,San Joaquín,2
+JAM,Independencia,27
+JAM,Quinta Normal,22
+JAM,Estación Central,75
+JAM,Pedro Aguirre Cerda,3
+HAZARD,Renca,8
+HAZARD,Maipú,37
+HAZARD,Ñuñoa,111
+HAZARD,La Reina,8
+HAZARD,Lo Prado,8
+HAZARD,Pudahuel,2
+HAZARD,Recoleta,26
+HAZARD,Santiago,298
+HAZARD,Cerrillos,2
+HAZARD,Las Condes,40
+HAZARD,Cerro Navia,8
+HAZARD,Peñalolén,7
+HAZARD,Providencia,154
+HAZARD,Independencia,39
+HAZARD,Quinta Normal,53
+HAZARD,Estación Central,113
+HAZARD,Pedro Aguirre Cerda,10
+POLICE,Macul,5
+POLICE,Renca,6
+POLICE,Maipú,4
+POLICE,Ñuñoa,116
+POLICE,La Reina,14
+POLICE,Lo Prado,17
+POLICE,Recoleta,57
+POLICE,Santiago,377
+POLICE,Las Condes,43
+POLICE,San Miguel,1
+POLICE,Cerro Navia,9
+POLICE,Providencia,116
+POLICE,San Joaquín,4
+POLICE,Independencia,71
+POLICE,Quinta Normal,41
+POLICE,Estación Central,136
+evento,comuna,1
+ACCIDENT,Renca,1
+ACCIDENT,Ñuñoa,11
+ACCIDENT,La Reina,1
+ACCIDENT,Lo Prado,8
+ACCIDENT,Recoleta,3
+ACCIDENT,Santiago,25
+ACCIDENT,Las Condes,6
+ACCIDENT,Cerro Navia,2
+ACCIDENT,Peñalolén,1
+ACCIDENT,Providencia,10
+ACCIDENT,Independencia,2
+ACCIDENT,Quinta Normal,10
+ACCIDENT,Estación Central,6
+CHIT_CHAT,Maipú,3
+CHIT_CHAT,Ñuñoa,41
+CHIT_CHAT,La Reina,3
+CHIT_CHAT,Lo Prado,3
+CHIT_CHAT,Recoleta,17
+CHIT_CHAT,Santiago,121
+CHIT_CHAT,Las Condes,21
+CHIT_CHAT,Cerro Navia,3
+CHIT_CHAT,Peñalolén,1
+CHIT_CHAT,Providencia,57
+CHIT_CHAT,San Joaquín,1
+CHIT_CHAT,Independencia,19
+CHIT_CHAT,Quinta Normal,10
+CHIT_CHAT,Estación Central,48
+ROAD_CLOSED,Ñuñoa,74
+ROAD_CLOSED,Recoleta,4
+ROAD_CLOSED,Santiago,52
+ROAD_CLOSED,Las Condes,3
+ROAD_CLOSED,Cerro Navia,13
+ROAD_CLOSED,Providencia,92
+ROAD_CLOSED,Quinta Normal,23
+ROAD_CLOSED,Estación Central,15

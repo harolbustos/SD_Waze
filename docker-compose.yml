@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+  api:
+    build: ./almacenamiento
+    container_name: api_waze
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - PORT=8080
+      - HOST=localhost
+    env_file:
+      - .env
+
+  scraper:
+    build: ./scraper
+    container_name: scraper_waze
+    depends_on:
+      - api
+    environment:
+      - URL_API=http://api:8080/eventos
+
+  cache:
+    build: ./cache
+    container_name: cache_waze
+    ports:
+      - "4000:4000"
+    depends_on:
+      - api
+    environment:
+      - PORT=4000
+      - CACHE_POLICY=LRU #LLU
+      - CACHE_SIZE=4
+      - API_BACKEND=http://api:8080
+      - HOST=0.0.0.0
+
+  trafico:
+    build: ./trafico
+    container_name: trafico_waze
+    environment:
+      - CACHE_URL=http://cache:4000
+      - DELAY_FIJO=6
+    depends_on:
+      - cache
+
+  filtrador:
+    build: ./filtrador
+    container_name: filtrador_waze
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - DB_NAME=eventosdb
+      - COLLECCION_ORIGEN=eventos
+      - COLLECCION_DESTINO=eventos_filtrados
+      - EXPORT_PATH=filtrados.csv
+
+  procesador:
+    build: ./procesador
+    container_name: procesador_waze
+    volumes:
+      - ./procesador:/app
+    working_dir: /app
+    stdin_open: true
+    tty: true
