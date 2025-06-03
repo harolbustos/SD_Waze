@@ -52,7 +52,11 @@ services:
       - DB_NAME=eventosdb
       - COLLECCION_ORIGEN=eventos
       - COLLECCION_DESTINO=eventos_filtrados
-      - EXPORT_PATH=filtrados.csv
+      - EXPORT_PATH=../procesador/filtrados.csv
+    volumes:
+      - ./filtrador:/app
+      - ./procesador:/app/../procesador
+    working_dir: /app
 
   procesador:
     build: ./procesador
@@ -62,3 +66,5 @@ services:
     working_dir: /app
     stdin_open: true
     tty: true
+    depends_on:
+      - filtrador

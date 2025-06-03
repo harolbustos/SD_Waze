@@ -24,6 +24,8 @@ def evento_valido(evento):
 
 def limpiar_evento(evento):
     datos = evento["datos"]
+    timestamp = datos["pubMillis"]
+    dt = datetime.datetime.fromtimestamp(timestamp/1000)
     return {
         "wid": datos["uuid"],
         "evento": datos["type"],
@@ -31,9 +33,9 @@ def limpiar_evento(evento):
         "lat": datos["location"]["y"],
         "lon": datos["location"]["x"],
         "comuna": evento["datos"]["city"],
-        "timestamp": datos["pubMillis"],
-        "fecha": datetime.datetime.fromtimestamp(datos["pubMillis"] / 1000).strftime("%Y-%m-%d %H:%M:%S")
-
+        "timestamp": timestamp,
+        "fecha": dt.strftime("%m/%d/%Y"),
+        "hora": dt.strftime("%H")
     }
 
 def procesar_eventos():
@@ -62,9 +64,9 @@ def procesar_eventos():
 
     # Exportar CSV
     with open(EXPORT_PATH, "w", encoding="utf-8") as f:
-        f.write("wid,evento,descripcion,fecha,comuna,lat,lon,timestamp\n")
+        f.write("wid,evento,descripcion,fecha,hora,comuna,lat,lon,timestamp\n")
         for ev in filtrados:
-            linea = f'{ev["wid"]},{ev["evento"]},{ev["descripcion"]},{ev["fecha"]},{ev["comuna"]},{ev["lat"]},{ev["lon"]},{ev["timestamp"]}\n'
+            linea = f'{ev["wid"]},{ev["evento"]},{ev["descripcion"]},{ev["fecha"]},{ev["hora"]},{ev["comuna"]},{ev["lat"]},{ev["lon"]},{ev["timestamp"]}\n'
             f.write(linea)
 
     print(f"📝 Exportado a archivo: {EXPORT_PATH}")
