@@ -1,2 +1,14 @@
-.venv
+.venv/
+venv/
+__pycache__/
 .env
+.env*
+node_modules/
+npm-debug.log
+yarn-error.log
+procesador/resultados/
+*.csv
+*.log
+*.pyc
+*.pid
+.idea/
