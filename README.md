@@ -27,6 +27,7 @@ pig -x local procesar.pig
 ```
 
 ## ✅ Adicionales
+### Credenciales en apartado Anexos del informe
 ###  Consultar el total de eventos en la base de datos
 ``` 
 curl http://localhost:8080/eventos/total
