@@ -1,4 +1,5 @@
 # 📦 Proyecto Sistemas Distribuidos: Manejo de la Información del Análisis de Tráfico en Región Metropolitana
+### Utilizando web scraping desde [Waze Live Map](https://www.waze.com/es-419/live-map) y su almacenamiento en MongoDB Atlas.
 
 ## Requisitos
 
@@ -26,7 +27,15 @@ pig -x local procesar.pig
 ```
 
 ## ✅ Adicionales
-### Para consultar el total de eventos en la base de datos
+###  Consultar el total de eventos en la base de datos
 ``` 
 curl http://localhost:8080/eventos/total
+```
+### Consultar el total de eventos por tipo en la base de datos
+``` 
+curl http://localhost:8080/eventos/por-tipo
+```
+### Consultar las metricas del cache
+``` 
+curl http://localhost:4000/cache/metricas
 ```

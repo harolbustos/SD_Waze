@@ -11,11 +11,11 @@ eventos = LOAD 'filtrados.csv' USING PigStorage(',') AS (
     timestamp:long
 );
 
--- Agrupación por comuna
+-- Agrupar por comuna
 agrupado_comuna = GROUP eventos BY comuna;
 conteo_comuna = FOREACH agrupado_comuna GENERATE group AS comuna, COUNT(eventos) AS total;
 
--- Agrupación por tipo
+-- Agrupar por tipo
 agrupado_tipo = GROUP eventos BY evento;
 conteo_tipo = FOREACH agrupado_tipo GENERATE group AS tipo_evento, COUNT(eventos) AS total;
 

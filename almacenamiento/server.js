@@ -45,6 +45,14 @@ app.get('/eventos', async (req, res) => {
   }
 });
 
+app.get('/eventos/total', async (req, res) => {
+  try {
+    const totalEventos = await Evento.countDocuments();
+    res.json({ total: totalEventos });
+  } catch (err) {
+    res.status(500).json({ error: 'Error al contar los eventos' });
+  }
+});
 
 app.get('/eventos/por-tipo', async (req, res) => {
   try {
