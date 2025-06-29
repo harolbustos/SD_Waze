@@ -3,8 +3,10 @@ import os
 import time
 
 # Configuracion
-DELAY_MOVIMIENTOS = 5
-DISTANCIA_PIXELES = 200
+CENTRO_X = 800
+CENTRO_Y = 400
+DELAY_MOVIMIENTO = 5
+ZOOM_OUT_NIVELES = 5
 URL_API = os.getenv("URL_API", "http://localhost:8080/eventos")
 eventos_vistos = set()
 
@@ -43,16 +45,37 @@ def manejar_respuesta(response):
         except Exception as e:
             print(f"Error al procesar respuesta: {e}")
 
-def mover_mapa(page):
-    movimientos = [
-        ("→", 800, 400, 600, 400),
-        ("↓", 800, 400, 800, 550),
-        ("←", 800, 400, 1000, 400),
-        ("↑", 800, 400, 800, 250),
-    ]
-    for nombre, x1, y1, x2, y2 in movimientos:
-        page.mouse.move(x1, y1)
-        page.mouse.down()
-        page.mouse.move(x2, y2, steps=15)
-        page.mouse.up()
-        time.sleep(DELAY_MOVIMIENTOS)
+def hacer_zoom_out(pagina, veces=ZOOM_OUT_NIVELES):
+    for _ in range(veces):
+        pagina.keyboard.press("Control+-")
+        time.sleep(0.5)
+
+def mover_mapa(pagina, dx, dy):
+    x1 = CENTRO_X
+    y1 = CENTRO_Y
+    x2 = x1 + dx
+    y2 = y1 + dy
+
+    pagina.mouse.move(x1, y1)
+    pagina.mouse.down()
+    pagina.mouse.move(x2, y2, steps=20)
+    pagina.mouse.up()
+
+    time.sleep(DELAY_MOVIMIENTO)
+
+def movimiento_espiral(niveles=6, paso=250):
+    movimientos = []
+    x, y = 0, 0
+    dx, dy = paso, 0
+    pasos = 1
+
+    for _ in range(niveles):
+        for _ in range(2):
+            for _ in range(pasos):
+                x += dx
+                y += dy
+                movimientos.append((x, y))
+            dx, dy = -dy, dx
+        pasos += 1
+
+    return movimientos
