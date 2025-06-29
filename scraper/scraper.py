@@ -15,7 +15,7 @@ def iniciar_scraper():
     while True:
         try:
             with sync_playwright() as p:
-                navegador = p.chromium.launch(headless=False)
+                navegador = p.chromium.launch(headless=True)
                 pagina = navegador.new_page()
                 pagina.on("response", manejar_respuesta)
 

@@ -5,10 +5,7 @@ eventos = LOAD 'filtrados.csv' USING PigStorage(',') AS (
     descripcion:chararray,
     fecha:chararray,
     hora:chararray,
-    comuna:chararray,
-    lat:double,
-    lon:double,
-    timestamp:long
+    comuna:chararray
 );
 
 -- Agrupar por comuna
