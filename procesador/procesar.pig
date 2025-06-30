@@ -1,12 +1,18 @@
--- Cargar CSV
-eventos = LOAD 'filtrados.csv' USING PigStorage(',') AS (
+-- Cargar CSV con cabecera
+eventos_raw = LOAD 'filtrados.csv' USING PigStorage(',') AS (
     wid:chararray,
     evento:chararray,
     descripcion:chararray,
     fecha:chararray,
     hora:chararray,
-    comuna:chararray
+    comuna:chararray,
+    lat:chararray,
+    lon:chararray,
+    timestamp:chararray
 );
+
+-- Eliminar cabecera: asumimos que la primera fila tiene el texto 'wid' como valor
+eventos = FILTER eventos_raw BY wid != 'wid';
 
 -- Agrupar por comuna
 agrupado_comuna = GROUP eventos BY comuna;
@@ -15,6 +21,15 @@ conteo_comuna = FOREACH agrupado_comuna GENERATE group AS comuna, COUNT(eventos)
 -- Agrupar por tipo
 agrupado_tipo = GROUP eventos BY evento;
 conteo_tipo = FOREACH agrupado_tipo GENERATE group AS tipo_evento, COUNT(eventos) AS total;
+
+-- Agrupar por ubicacion (eje X e Y)
+conteo_por_ubicacion = FOREACH eventos GENERATE
+    evento,
+    (double)lat AS lat,
+    (double)lon AS lon,
+    comuna,
+    fecha,
+    timestamp;
 
 -- Total eventos por dia
 eventos_por_dia = GROUP eventos BY fecha;
@@ -53,3 +68,4 @@ STORE conteo_por_dia INTO 'resultados/por_dia' USING PigStorage(',');
 STORE conteo_por_hora INTO 'resultados/por_hora' USING PigStorage(',');
 STORE conteo_por_hora_tipo INTO 'resultados/por_hora_y_tipo' USING PigStorage(',');
 STORE conteo_por_dia_tipo INTO 'resultados/por_dia_y_tipo' USING PigStorage(',');
+STORE conteo_por_ubicacion INTO 'resultados/por_ubicacion' USING PigStorage(',');
