@@ -30,8 +30,8 @@ services:
       - api
     environment:
       - PORT=4000
-      - CACHE_POLICY=LRU #LLU
-      - CACHE_SIZE=4
+      - CACHE_POLICY=LFU #LRU o LFU
+      - CACHE_SIZE=3
       - API_BACKEND=http://api:8080
       - HOST=0.0.0.0
 
@@ -40,7 +40,6 @@ services:
     container_name: trafico_waze
     environment:
       - CACHE_URL=http://cache:4000
-      - DELAY_FIJO=6
     depends_on:
       - cache
 

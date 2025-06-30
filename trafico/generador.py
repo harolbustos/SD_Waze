@@ -8,8 +8,8 @@ from func.utils import (
     obtener_tipos_disponibles
 )
 
-CACHE_URL = os.getenv("CACHE_URL")
-DELAY_FIJO = int(os.getenv("DELAY_FIJO"))
+CACHE_URL = os.getenv("CACHE_URL", "http://localhost:4000")
+DELAY_FIJO = 6
 
 # Distribución no uniforme
 DISTRIBUCION_PESADA = {

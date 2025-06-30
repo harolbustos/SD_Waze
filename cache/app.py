@@ -10,7 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Configuracion
-API_BACKEND = os.getenv("API_BACKEND")
+API_BACKEND = os.getenv("API_BACKEND", "http://localhost:8080")
 CACHE_SIZE = int(os.getenv("CACHE_SIZE"))
 CACHE_POLICY = os.getenv("CACHE_POLICY")
 PORT = int(os.getenv("PORT"))
